@@ -6,31 +6,31 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted } from "vue";
-import { useStore } from "vuex";
-import TodoInput from "./components/todoInput/Index.vue";
-import List from "./components/todoList/Index.vue";
-import { IUseTodo, useTodo } from "./hooks/index";
+import { computed, defineComponent, onMounted } from 'vue';
+import { useStore } from 'vuex';
+import TodoInput from './components/todoInput/Index.vue';
+import List from './components/todoList/Index.vue';
+import { IUseTodo, useTodo } from './hooks/index';
 export default defineComponent({
-  name: "App",
-  components: {
-    TodoInput,
-    List,
-  },
-  setup() {
-    const { setTodoList }: IUseTodo = useTodo();
-    const store = useStore();
-    onMounted(() => {
-      setTimeout(() => {
-        setTodoList();
-      }, 1000);
-    });
-    return {
-      todoList: computed(() => {
-        return store.state.list;
-      }),
-    };
-  },
+    name: 'App',
+    components: {
+        TodoInput,
+        List
+    },
+    setup() {
+        const { setTodoList }: IUseTodo = useTodo();
+        const store = useStore();
+        onMounted(() => {
+            setTimeout(() => {
+                setTodoList();
+            }, 1000);
+        });
+        return {
+            todoList: computed(() => {
+                return store.state.list;
+            })
+        };
+    }
 });
 </script>
 
