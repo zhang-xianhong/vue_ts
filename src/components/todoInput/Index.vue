@@ -1,12 +1,12 @@
 <template>
   <div class="todo-input">
-    <input
+    <el-input
       type="text"
       v-model="todoValue"
       @keyup.enter="setTodoValue"
       placeholder="please input something"
-    />
-    <el-input v-model="input" placeholder="请输入内容"></el-input>
+    >
+    </el-input>
     <el-button type="primary">我是按钮</el-button>
   </div>
 </template>
@@ -28,9 +28,11 @@ export default defineComponent({
         todoValue.value = "";
       }
     };
+    const input = ref("");
     return {
       todoValue,
       setTodoValue,
+      input,
     };
   },
 });

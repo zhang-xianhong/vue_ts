@@ -3,11 +3,11 @@ import {
   SET_TODO_LIST,
   REMOVE_TODO,
   SET_TODO_STATUS,
-  SET_DOING,
-} from "@/store/actionTypes";
-import { ITodo, TODO_STATUS } from "@/types";
-import { useStore, Store } from "vuex";
-import { watch } from "vue";
+  SET_DOING
+} from '@/store/actionTypes';
+import { ITodo, TODO_STATUS } from '@/types';
+import { useStore, Store } from 'vuex';
+import { watch } from 'vue';
 
 export interface IUseTodo {
   setTodo: (value: string) => void;
@@ -31,7 +31,7 @@ function useTodo(): IUseTodo {
     () => {
       return store.state.list; //第一个参数监听要变化的值,把变化的值放到第二个参数的参数上
     },
-    (todoList) => {
+    todoList => {
       setLocalList(todoList);
     }
   );
@@ -40,7 +40,7 @@ function useTodo(): IUseTodo {
     const todo: ITodo = {
       id: new Date().getTime(),
       content: value,
-      status: TODO_STATUS.WILLDO,
+      status: TODO_STATUS.WILLDO
     };
     store.dispatch(SET_TODO, todo);
   }
@@ -55,27 +55,27 @@ function useTodo(): IUseTodo {
   }
 
   function setStatus(id: number): void {
-    console.log("setStatus");
+    console.log('setStatus');
     store.dispatch(SET_TODO_STATUS, id);
   }
 
   function setDoing(id: number): void {
-    console.log("setDoing");
+    console.log('setDoing');
     store.dispatch(SET_DOING, id);
   }
 
   function useLocalStorage(): IuseLocalStorage {
     function setLocalList(todoList: ITodo[]): void {
-      localStorage.setItem("todoList", JSON.stringify(todoList));
+      localStorage.setItem('todoList', JSON.stringify(todoList));
     }
 
     function getLocalList(): ITodo[] {
-      return JSON.parse(localStorage.getItem("todoList") || "[]");
+      return JSON.parse(localStorage.getItem('todoList') || '[]');
     }
 
     return {
       setLocalList,
-      getLocalList,
+      getLocalList
     };
   }
 
@@ -84,7 +84,7 @@ function useTodo(): IUseTodo {
     setTodoList,
     removeTodo,
     setStatus,
-    setDoing,
+    setDoing
   };
 }
 
