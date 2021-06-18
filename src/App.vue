@@ -1,41 +1,38 @@
 <template>
   <div class="wrapper">
-    <todo-input />
-    <List :todoList="todoList" />
+    <router-view></router-view>
+    <main-tab-bar />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted } from 'vue';
-import { useStore } from 'vuex';
-import TodoInput from './components/todoInput/Index.vue';
-import List from './components/todoList/Index.vue';
+import { defineComponent, onMounted } from 'vue';
+
 import { IUseTodo, useTodo } from './hooks/index';
+
+import MainTabBar from '@/components/mainTabBar/Index.vue';
 export default defineComponent({
-    name: 'App',
-    components: {
-        TodoInput,
-        List
-    },
-    setup() {
-        const { setTodoList }: IUseTodo = useTodo();
-        const store = useStore();
-        onMounted(() => {
-            setTimeout(() => {
-                setTodoList();
-            }, 1000);
-        });
-        return {
-            todoList: computed(() => {
-                return store.state.list;
-            })
-        };
-    }
+  name: 'App',
+  components: {
+    MainTabBar
+  },
+  setup() {
+    const { setTodoList }: IUseTodo = useTodo();
+    onMounted(() => {
+      setTimeout(() => {
+        setTodoList();
+      }, 1000);
+    });
+  }
 });
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/css/base.scss';
 .wrapper {
-  background-color: #eee;
+  // background-color: #eee;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
 }
 </style>

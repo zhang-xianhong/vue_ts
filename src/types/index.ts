@@ -5,18 +5,13 @@ interface ITodo {
 }
 
 interface IState {
-    list: ITodo[]
+  list: ITodo[];
 }
 
 enum TODO_STATUS {
-  WILLDO = "willdo",
-  DOING = "doing",
-  FINISHED = "finished",
+  WILLDO = 'willdo',
+  DOING = 'doing',
+  FINISHED = 'finished'
 }
 
-
-export {
-    ITodo,
-    IState,
-    TODO_STATUS
-}
+export { ITodo, IState, TODO_STATUS };

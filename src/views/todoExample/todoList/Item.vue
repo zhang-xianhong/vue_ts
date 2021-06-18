@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { ITodo, TODO_STATUS } from "../../types/index";
+import { ITodo, TODO_STATUS } from "@/types/index";
 interface IStatusState {
   DOING: TODO_STATUS;
   WILLDO: TODO_STATUS;

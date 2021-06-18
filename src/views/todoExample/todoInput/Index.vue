@@ -12,29 +12,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { IUseTodo, useTodo } from "../../hooks/index";
+import { defineComponent, ref } from 'vue';
+import { IUseTodo, useTodo } from '@/hooks/index';
 // import { ElButtonGroup } from 'element-plus'
 export default defineComponent({
-  name: "TodoInput",
+  name: 'TodoInput',
   setup() {
-    const todoValue = ref<string>("");
+    const todoValue = ref<string>('');
     const { setTodo }: IUseTodo = useTodo();
     const setTodoValue = (value: string): void => {
       if (todoValue.value.trim().length) {
         //   设置数据
         // alert(todoValue.value);
         setTodo(todoValue.value);
-        todoValue.value = "";
+        todoValue.value = '';
       }
     };
-    const input = ref("");
     return {
       todoValue,
-      setTodoValue,
-      input,
+      setTodoValue
     };
-  },
+  }
 });
 </script>
 
