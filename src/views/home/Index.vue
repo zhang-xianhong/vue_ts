@@ -1,11 +1,15 @@
 <template>
   <div class="home">
-    <nav-bar class="home-bar">
+    <NavBar class="home-bar">
       <template #center> supermarket </template>
-    </nav-bar>
-    <home-swiper :banners="banners" class="home-swiper" />
-    <recommend-view :recommends="recommends" />
-    <key-code :keywords="keywords" />
+    </NavBar>
+    <div class="container">
+      <HomeSwiper :banners="banners" class="home-swiper" />
+      <RecommendView :recommends="recommends" />
+      <el-scrollbar>
+        <KeyCode :keywords="keywords" />
+      </el-scrollbar>
+    </div>
   </div>
 </template>
 
@@ -38,7 +42,7 @@ export default defineComponent({
       recommends: [],
       keywords: []
     });
-    const getHomeData = async () => {
+    const getHomeData = async() => {
       const { data } = await getHomeMultidata();
       states.banners = data.banner.list;
       states.recommends = data.recommend.list;
@@ -60,12 +64,12 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .home {
-    padding-top: 44px;
-    /* vh视口 */
-    height: 100vh;
-    /* 第二种方法 */
-    /* position: relative; */
-  }
+  padding-top: 44px;
+  /* vh视口 */
+  height: 100vh;
+  /* 第二种方法 */
+  /* position: relative; */
+}
 .home-bar {
   background-color: #ff8198;
   color: #fff;
@@ -76,10 +80,15 @@ export default defineComponent({
   z-index: 9;
 }
 .home-swiper {
-  margin-top: 44px;
+  // margin-top: 44px;
   z-index: 9;
-  >img {
+  > img {
     width: 400px;
   }
+}
+.container {
+  height: calc(100% - 44px);
+  overflow: hidden;
+  overflow-y: scroll;
 }
 </style>

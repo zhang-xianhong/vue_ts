@@ -1,6 +1,6 @@
 <template>
   <div class="recommend">
-    <div v-for="(item, index) in recommend" class="recommend-item" :key="index">
+    <div v-for="(item, index) in recommend" :key="index" class="recommend-item">
       <div>
         <a :href="item.link">
           <img :src="item.image" alt="不能显示" />
@@ -35,6 +35,7 @@ export default defineComponent({
   display: flex;
   padding: 10px 0 15px;
   border-bottom: 5px solid #eee;
+  /* height: 102px; */
 }
 .recommend-item {
   flex: 1;

@@ -12,7 +12,11 @@ import { useRoute, useRouter } from 'vue-router';
 export default defineComponent({
   name: 'TabBarItem',
   props: {
-    path: String,
+    // path: String,
+    path: {
+      type: String,
+      default: ''
+    },
     activeColor: {
       type: String,
       default: 'red'

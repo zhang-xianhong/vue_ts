@@ -1,10 +1,10 @@
 <template>
   <div class="todo-input">
     <el-input
-      type="text"
       v-model="todoValue"
-      @keyup.enter="setTodoValue"
+      type="text"
       placeholder="please input something"
+      @keyup.enter="setTodoValue"
     >
     </el-input>
     <el-button type="primary">我是按钮</el-button>

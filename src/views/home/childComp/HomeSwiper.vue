@@ -1,11 +1,11 @@
 <template>
-  <swiper>
-    <swiper-item v-for="(item, index) in banner" :key="index">
+  <Swiper>
+    <SwiperItem v-for="(item, index) in banner" :key="index">
       <a :href="item.link">
-        <img :src="item.image" alt="" @load="imageLoad" class="images" />
+        <img :src="item.image" alt="" class="images" @load="imageLoad" />
       </a>
-    </swiper-item>
-  </swiper>
+    </SwiperItem>
+  </Swiper>
 </template>
 <script>
 import { ref, defineComponent } from 'vue';
@@ -42,7 +42,7 @@ export default defineComponent({
 </script>
 <style scoped>
 .images {
-  width: 400px;
+  width: 50%;
   height: auto;
 }
 </style>

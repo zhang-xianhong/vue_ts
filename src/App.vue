@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <router-view></router-view>
-    <main-tab-bar />
+    <MainTabBar />
   </div>
 </template>
 

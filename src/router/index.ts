@@ -24,7 +24,8 @@ const routes: Array<RouteRecordRaw> = [
 ];
 const router: Router = createRouter({
   routes,
-  history: createWebHistory(process.env.BASE_URL)
+  // history: createWebHistory(process.env.BASE_URL)
+  history: createWebHistory()
 });
 
 export default router;

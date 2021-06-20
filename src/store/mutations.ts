@@ -23,15 +23,15 @@ export default {
     state.list = state.list.map((item: ITodo) => {
       if (item.id === id) {
         switch (item.status) {
-        case TODO_STATUS.FINISHED:
-          item.status = TODO_STATUS.WILLDO;
-          break;
-        case TODO_STATUS.WILLDO:
-        case TODO_STATUS.DOING:
-          item.status = TODO_STATUS.FINISHED;
-          break;
-        default:
-          break;
+          case TODO_STATUS.FINISHED:
+            item.status = TODO_STATUS.WILLDO;
+            break;
+          case TODO_STATUS.WILLDO:
+          case TODO_STATUS.DOING:
+            item.status = TODO_STATUS.FINISHED;
+            break;
+          default:
+            break;
         }
       }
       return item;

@@ -1,7 +1,7 @@
 <template>
   <div class="todo-example">
-    <todo-input />
-    <List :todoList="todoList" />
+    <TodoInput />
+    <List :todo-list="todoList" />
   </div>
 </template>
 

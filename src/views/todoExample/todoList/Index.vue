@@ -1,6 +1,6 @@
 <template>
   <div>
-    <list-item
+    <ListItem
       v-for="item of todoList"
       :key="item.id"
       :todo="item"
@@ -12,25 +12,31 @@
 </template>
 
 <script lang="ts">
-import { IUseTodo, useTodo } from "@/hooks";
-import { ITodo } from "@/types";
-import { defineComponent, PropType } from "vue";
-import ListItem from "./Item.vue";
+import { IUseTodo, useTodo } from '@/hooks';
+import { ITodo } from '@/types';
+import { defineComponent, PropType } from 'vue';
+import ListItem from './Item.vue';
 export default defineComponent({
-  name: "List",
+  name: 'List',
   components: {
-    ListItem,
+    ListItem
   },
   props: {
-    todoList: Array as PropType<ITodo[]>,
+    // todoList: Array as PropType<ITodo[]>
+    todoList: {
+      type: Array as PropType<ITodo[]>,
+      default() {
+        return [];
+      }
+    }
   },
   setup() {
     const { removeTodo, setStatus, setDoing }: IUseTodo = useTodo();
     return {
       removeTodo,
       setStatus,
-      setDoing,
+      setDoing
     };
-  },
+  }
 });
 </script>

@@ -11,8 +11,8 @@
     <button class="btn" @click="removeTodo(todo.id)">删除</button>
     <button
       v-if="todo.status !== FINISHED"
-      @click="setDoing(todo.id)"
       class="doing"
+      @click="setDoing(todo.id)"
     >
       {{ todo.status === DOING ? "正在做" : "马上做" }}
     </button>
@@ -20,46 +20,46 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
-import { ITodo, TODO_STATUS } from "@/types/index";
+import { defineComponent, PropType } from 'vue';
+import { ITodo, TODO_STATUS } from '@/types/index';
 interface IStatusState {
   DOING: TODO_STATUS;
   WILLDO: TODO_STATUS;
   FINISHED: TODO_STATUS;
 }
 export default defineComponent({
-  name: "ListItem",
+  name: 'ListItem',
   props: {
     todo: {
       type: Object as PropType<ITodo>,
-      required: true,
-    },
+      required: true
+    }
   },
   setup(props, { emit }) {
     const statusState: IStatusState = {
       DOING: TODO_STATUS.DOING,
       WILLDO: TODO_STATUS.WILLDO,
-      FINISHED: TODO_STATUS.FINISHED,
+      FINISHED: TODO_STATUS.FINISHED
     };
 
     const removeTodo = (id: number): void => {
-      emit("removeTodo", id);
+      emit('removeTodo', id);
     };
 
     const setStatus = (id: number): void => {
-      emit("setStatus", id);
+      emit('setStatus', id);
     };
 
     const setDoing = (id: number): void => {
-      emit("setDoing", id);
+      emit('setDoing', id);
     };
     return {
       ...statusState,
       removeTodo,
       setStatus,
-      setDoing,
+      setDoing
     };
-  },
+  }
 });
 </script>
 

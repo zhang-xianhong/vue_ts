@@ -1,10 +1,10 @@
-import { IState } from "@/types";
+import { IState } from '@/types';
 
 export default <IState>{
-  list: [],
+  list: []
 };
 
-/* 
+/*
 list: []
 listItem: {
     id: number,
