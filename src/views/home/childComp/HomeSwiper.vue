@@ -42,7 +42,8 @@ export default defineComponent({
 </script>
 <style scoped>
 .images {
-  width: 50%;
+  width: 100%;
+  height: 300px !important;
   height: auto;
 }
 </style>

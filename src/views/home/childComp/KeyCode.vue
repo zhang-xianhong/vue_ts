@@ -9,6 +9,7 @@
       :data="tableData"
       style="width: 100%"
       :row-class-name="tableRowClassName"
+      @row-click="changeTableColor"
     >
       <el-table-column prop="is_red" label="状态" width="180">
       </el-table-column>
@@ -39,25 +40,41 @@ export default defineComponent({
   },
   setup(props: { keywords: IKeyWords[] }) {
     const tableData: Ref<IKeyWords[]> = ref(props.keywords);
-    console.log('keywords: ', tableData);
+    // console.log('keywords: ', tableData);
     const is_red = ref(tableData.value[0].is_red);
     const words = ref(tableData.value[0].words);
     const acm = ref(tableData.value[0].acm);
-    const tableRowClassName = (row: number, rowIndex: number): string => {
+    const tableRowClassName = ref<string>('');
+    const changeTableColor = function({ row = 0, rowIndex = 1 }): void {
       if (rowIndex === 1) {
-        return 'warning-row';
+        console.log('test1');
+        // return 'warning-row';
+        tableRowClassName.value = 'warning-row';
       } else if (rowIndex === 3) {
-        return 'success-row';
+        // return 'success-row';
+        console.log('test3');
+        tableRowClassName.value = 'success-row';
       }
-      return '';
     };
+    // const tableRowClassName = ({row: number, rowIndex: number}): string => {
+    //   // console.log(row);
+    //   if (rowIndex === 1) {
+    //     console.log(1);
+    //     return 'warning-row';
+    //   } else if (rowIndex === 3) {
+    //     console.log(3);
+    //     return 'success-row';
+    //   }
+    //   return '';
+    // };
 
     return {
       tableData,
       is_red,
       words,
       acm,
-      tableRowClassName
+      tableRowClassName,
+      changeTableColor
     };
   }
 });

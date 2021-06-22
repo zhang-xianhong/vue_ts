@@ -7,3 +7,13 @@ export function getHomeMultidata() {
   });
 //   return axiosInstance.get('/home/multidata');
 }
+
+export function getHomeGoods(type: string, page: number) {
+  return axiosInstance({
+    url: '/home/data',
+    params: {
+      type,
+      page
+    }
+  });
+}

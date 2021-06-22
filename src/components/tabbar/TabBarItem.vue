@@ -48,13 +48,13 @@ export default defineComponent({
   }
 });
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .tab-bar-item {
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  height: 49px;
-  text-align: center;
+  height: 64px;
+  /* text-align: center; */
   font-size: 14px;
 }
 .images {

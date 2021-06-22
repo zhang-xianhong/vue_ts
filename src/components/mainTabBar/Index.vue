@@ -48,16 +48,17 @@
   </TabBar>
 </template>
 <script>
+import { defineComponent } from 'vue';
 // 使用的是别名定义的文件路径
 import TabBar from '@/components/tabbar/TabBar.vue';
 import TabBarItem from '@/components/tabbar/TabBarItem.vue';
-export default {
+export default defineComponent({
   name: 'MainTabBar',
   components: {
     TabBar,
     TabBarItem
   }
-};
+});
 </script>
 <style scoped>
 </style>

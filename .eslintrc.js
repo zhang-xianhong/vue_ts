@@ -39,7 +39,11 @@ module.exports = {
         'no-extra-semi': 'off',
         'camelcase': 'off',
         'quotes': 'warn',
-        "semi": [1, 'always']
+        "semi": [1, 'always'],
+        // .eslintrc.js
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': ['warn']
+
     },
     extends: [
         'eslint:recommended',
