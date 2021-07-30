@@ -1,0 +1,36 @@
+Result Skip Results Iframe EDIT ON
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/lib/theme-chalk/index.css">
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-plus/lib/index.full.js"></script>
+    <title>Element Plus demo</title>
+</head>
+
+<body>
+    <div id="app">
+        <el-button type="primary">我是按钮</el-button>
+
+        <el-card shadow="hover">
+            <el-form label-width="80px">
+                <el-form-item label="用户名">
+                    <el-input placeholder="输入框"></el-input>
+                </el-form-item>
+                <el-form-item label="密码">
+                    <el-input placeholder="输入框"></el-input>
+                </el-form-item>
+            </el-form>
+            <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+        </el-card>
+    </div>
+    <script>
+        Vue.createApp({}).use(ElementPlus).mount("#app");
+    </script>
+</body>
+
+</html>

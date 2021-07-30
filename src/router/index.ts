@@ -20,6 +20,14 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/todo',
     component: () => import('@/views/todoExample/Index.vue')
+  },
+  {
+    path: '/users',
+    component: () => import('@/views/users/Index.vue')
+  },
+  {
+    path: '/article',
+    component: () => import('@/views/article/Index.vue')
   }
 ];
 const router: Router = createRouter({
