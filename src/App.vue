@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
     <MainTabBar />
+    <!-- <Layout /> -->
     <router-view></router-view>
   </div>
 </template>
@@ -11,10 +12,12 @@ import { defineComponent, onMounted } from 'vue';
 import { IUseTodo, useTodo } from './hooks/index';
 
 import MainTabBar from '@/components/mainTabBar/Index.vue';
+// import Layout from '@/components/layout/Index.vue';
 export default defineComponent({
   name: 'App',
   components: {
     MainTabBar
+    // Layout
   },
   setup() {
     const { setTodoList }: IUseTodo = useTodo();

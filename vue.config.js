@@ -46,6 +46,13 @@
 const path = require('path')
 
 module.exports = {
+    // css: {
+    //     loaderOptions: {
+    //         sass: {
+    //             prependData: '@import "@/styles/common/index.scss";'
+    //         }
+    //     }
+    // },
     // lintOnSave: false,
     devServer: {
         // host: '127.0.0.1',

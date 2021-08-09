@@ -52,7 +52,8 @@ export default defineComponent({
     });
     const getUserDatas = async() => {
       const { data } = await getUsersList();
-      userState.userData = data?.map((item: any) => ({
+      // console.log('data', data);
+      userState.userData = data?.data.map((item: any) => ({
         ...item
       }));
       console.log('userState.userData', userState.userData);

@@ -1,7 +1,7 @@
 <template>
     <div class="users-container">
         <h3>文章信息</h3>
-        <el-row>
+        <el-row style="margin-bottom: 5px;">
             <el-col :span="6" style="text-align: left">
                 <el-button
                 icon="el-icon-plus"
@@ -24,49 +24,51 @@
             </el-col>
         </el-row>
         <el-table :data="articleData">
-            <el-table-column label="类型编号" prop="typeId">
-                <template #default="props">
-                    {{ props.row.articleType }}
-                </template>
-            </el-table-column>
-            <el-table-column label="标题">
-                <template #default="props">
-                    {{ props.row.articleTitle }}
-                </template>
-            </el-table-column>
-            <el-table-column label="内容" prop="articleContent"></el-table-column>
-            <el-table-column label="文章简介" prop="articleIntroduce"></el-table-column>
-            <el-table-column label="文章发布时间" prop="addTime">
-                <template #default="props">
-                    {{ dateFormat(props.row.addTime) }}
-                </template>
-            </el-table-column>
-            <el-table-column label="游览次数" prop="viewCount"></el-table-column>
-            <el-table-column label="操作">
-                <template #default="props">
-                    <el-button
-                    type="text"
-                    size="mini"
-                    @click="onEdit(props.row)"
-                    >
-                    编辑
-                    </el-button>
-                    <el-button
-                    type="text"
-                    size="mini"
-                    @click="onDelete(props.row)"
-                    >
-                    删除
-                    </el-button>
-                </template>
-            </el-table-column>
+          <el-table-column label="序号" type="index">
+          </el-table-column>
+          <el-table-column label="类型编号" prop="typeId">
+              <template #default="props">
+                  {{ props.row.articleType }}
+              </template>
+          </el-table-column>
+          <el-table-column label="标题">
+              <template #default="props">
+                  {{ props.row.articleTitle }}
+              </template>
+          </el-table-column>
+          <el-table-column label="内容" prop="articleContent"></el-table-column>
+          <el-table-column label="文章简介" prop="articleIntroduce"></el-table-column>
+          <el-table-column label="文章发布时间" prop="addTime">
+              <template #default="props">
+                  {{ dateFormat(props.row.addTime) }}
+              </template>
+          </el-table-column>
+          <el-table-column label="游览次数" prop="viewCount"></el-table-column>
+          <el-table-column label="操作">
+              <template #default="props">
+                  <el-button
+                  type="text"
+                  size="mini"
+                  @click="onEdit(props.row)"
+                  >
+                  编辑
+                  </el-button>
+                  <el-button
+                  type="text"
+                  size="mini"
+                  @click="onDelete(props.row)"
+                  >
+                  删除
+                  </el-button>
+              </template>
+          </el-table-column>
         </el-table>
         <div class="packaged-pagination">
             <span class="packaged-pagination__total" :total="total">共 {{ total }} 条</span>
             <el-pagination
             :current-page="searchProps.page"
             :page-size="searchProps.pageSize"
-            :page-sizes="[5, 10, 20, 50, 100]"
+            :page-sizes="[5, 10, 20, 50]"
             layout="total, sizes, prev, pager, next, jumper"
             :total="total"
             @size-change="handlePageSizeChange"
@@ -98,6 +100,7 @@ import { IArticle } from '@/types/index';
 interface ArticleState {
     articleData: Array<IArticle>,
     total: number,
+    loading: boolean,
     disabled: boolean;
     isEdit: boolean,
     searchProps: {
@@ -111,7 +114,7 @@ interface ArticleState {
 }
 
 export default defineComponent({
-  name: 'User',
+  name: 'Article',
   components: {
     AddArticle
   },
@@ -120,6 +123,7 @@ export default defineComponent({
     const articleState: ArticleState = reactive({
       articleData: [],
       total: 0,
+      loading: false,
       disabled: false,
       isEdit: false,
       searchProps: {
@@ -159,15 +163,26 @@ export default defineComponent({
     }
 
     const getArticleData = async() => {
-      const { data } = await getArticleList(articleState.searchProps);
-      //     console.log('data', data);
-      const { count, rows = [] } = data;
-      articleState.articleData = rows.map((item: any) => ({
-        ...item,
-        articleType: getArticleType(item.typeId)
-      }));
-      articleState.total = count;
-      console.log('articleState.articleData', articleState.articleData);
+      try {
+        articleState.loading = true;
+        const { data } = await getArticleList(articleState.searchProps);
+        articleState.loading = false;
+        //     console.log('data', data);
+        const { count, rows = [] } = data;
+        console.log('count', count);
+        articleState.articleData = rows.map((item: any) => ({
+          ...item,
+          articleType: getArticleType(item.typeId)
+        }));
+        articleState.total = count;
+        console.log('articleState.articleData', articleState.articleData);
+      } catch (error) {
+        articleState.loading = false;
+        ElMessage({
+          type: 'error',
+          message: '获取文章列表失败'
+        });
+      }
     };
     getArticleData();
 
